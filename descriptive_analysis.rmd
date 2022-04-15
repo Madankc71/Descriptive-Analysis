@@ -1,0 +1,109 @@
+---
+title: "Descriptive Statistics"
+author: "Madan K C"
+date: "04/11/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+I took the dataset of cars. It contains 
+The dataset contains 50 observations and 2 variables, representing the speed and distance of cars.
+
+```{r}
+cars
+View(cars)
+```
+
+  We can find minimum and maximum values using max() and min () functions.
+```{r}
+min(cars$dist)
+max(cars$dist)
+```
+
+
+```{r}
+min(cars$speed)
+max(cars$speed)
+```
+
+
+```{r}
+```
+The **Range** also  gives minimun and maximum values.
+```{r}
+rnge<-range(cars$speed)
+rnge
+```
+```{r}
+rnge<-range(cars$dist)
+rnge
+```
+
+```{r}
+rnge[2]
+```
+
+We can find mean and median values using the functions mean() and median()
+```{r}
+mean(cars$speed)
+median(cars$speed)
+```
+
+The **First Quartile**,**Third Quartile** and *IQR* have functions which are used below
+```{r}
+quantile(cars$speed, 0.25)
+```
+For the Third quartile we just need to change second parameter as **0.75**
+
+```{r}
+IQR(cars$speed)
+```
+ **Standard deviation and variance**
+
+ 
+The standard deviation and the variance can be found using sd() and var() functions:
+
+```{r}
+sd(cars$speed)
+var(cars$speed)
+```
+**Summary**
+Summary will give summary for all the variables by a function called summary()
+
+```{r}
+summary(cars)
+```
+
+If we need the descriptive statistics by group we can apply a function by() 
+```{r}
+by(cars, cars$speed, summary)
+```
+
+```{r}
+by(cars, cars$dist, summary)
+```
+
+Plotting the histogram for the speed of car
+
+```{r}
+hist(cars$speed, xlab="Speed", main="Histogram of Speed of Cars")
+```
+
+**BoxPlot**. 
+  
+Plotting Box Plots. They remove the outliers and ease the descriptive analysis.
+  
+```{r}
+boxplot(cars$speed ~ cars$dist, xlab="distance", ylab="speed")
+```
+ 
+The freq() function produces frequency tables with frequencies, proportions, as well as missing data information.
+```{r}
+library(summarytools)
+freq(cars$speed)
+```
